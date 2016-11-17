@@ -11,19 +11,23 @@ class Hero():
 
 		# Load hero image.
 		# thank you Redshrike. http://opengameart.org/content/16x16-16x24-32x32-rpg-enemies-updated
+		hero_images = os.listdir('images/hero')
+		hero_images.sort() # PYTHON SORT DOES NOT RETURN THE LIST
+
 		self.images = {
 			"up": [pygame.image.load('images/hero/'+file) for 
-				file in os.listdir('images/hero') if file[0] == 'u'],
+				file in hero_images if file[0] == 'u'],
 			"down":	[pygame.image.load('images/hero/'+file) for 
-				file in os.listdir('images/hero') if file[0] == 'd'],
+				file in hero_images if file[0] == 'd'],
 			"left": [pygame.image.load('images/hero/'+file) for 
-				file in os.listdir('images/hero') if file[0] == 'l'],
+				file in hero_images if file[0] == 'l'],
 			"right": [pygame.image.load('images/hero/'+file) for 
-				file in os.listdir('images/hero') if file[0] == 'r']}
+				file in hero_images if file[0] == 'r']}
 		self.image = self.images["down"][0]
 		self.rect = self.image.get_rect()
 		self.screen_rect = screen.get_rect()
 		self.frame = 0
+		self.ticker = 0
 
 		# Hero begins at bottom-center of screen
 		self.rect.centerx = self.screen_rect.centerx
@@ -60,8 +64,12 @@ class Hero():
 
 	def animate(self, direction):
 		"""Calculates next frame of animation."""
-		if self.frame < len(self.images[direction])-1:
-			self.frame += 1
-		else:
+		maxframe = len(self.images[direction])-1
+		if self.frame <= maxframe:
+			if self.ticker % 50 == 0:
+				self.frame += 1
+		if self.frame > maxframe:
 			self.frame = 0
+
 		self.image = self.images[direction][self.frame]
+		self.ticker += 1
