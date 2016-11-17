@@ -29,13 +29,13 @@ class Hero():
 		for direction in self.move_flags:
 			if self.move_flags[direction]:
 				px = self.sets.speed
-				if direction == "up":
+				if direction == "up" and self.rect.top > self.screen_rect.top:
 					self.y -= px
-				elif direction == "down":
+				elif direction == "down" and self.rect.bottom < self.screen_rect.bottom:
 					self.y += px
-				elif direction == "left":
+				elif direction == "left" and self.rect.left > self.screen_rect.left:
 					self.x -= px
-				else:
+				elif direction == "right" and self.rect.right < self.screen_rect.right:
 					self.x += px
 
 		self.rect.centerx = self.x
