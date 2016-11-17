@@ -14,11 +14,12 @@ def run():
 	pygame.display.set_caption("George Souls")
 
 	# Create hero
-	hero = Hero(screen)
+	hero = Hero(sets, screen)
 
 	# Main game loop
 	while True:
 		gf.check_events(hero)
+		hero.update()
 		gf.update_screen(sets, screen, hero)
 
 run()
