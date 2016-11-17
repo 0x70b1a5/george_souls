@@ -18,7 +18,7 @@ def run():
 
 	# Main game loop
 	while True:
-		gf.check_events()
+		gf.check_events(hero)
 		gf.update_screen(sets, screen, hero)
 
 run()
