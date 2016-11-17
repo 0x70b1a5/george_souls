@@ -6,6 +6,7 @@ class Settings():
 		# Screen
 		self.screen_width = 1200
 		self.screen_height = 800
+		self.bg_color = (0,0,0)
 
 		# Hero stats
 		self.speed = 1.5

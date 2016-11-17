@@ -14,6 +14,7 @@ def check_events(hero):
 def update_screen(settings, screen, hero):
 	"""Update sprites and flip to new screen."""
 
+	screen.fill(settings.bg_color)
 	hero.blitme()
 	pygame.display.flip()
 
